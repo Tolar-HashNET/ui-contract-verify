@@ -24,6 +24,14 @@
   color: white;
 }
 
+.basics {
+  display: flex;
+  font-size: 12pt;
+  padding: 10px 0;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
 .App-link {
   color: #61dafb;
 }

@@ -15,6 +15,7 @@ class App extends React.Component {
       solSource: '',
       bytecode: '',
       contractAddress: '',
+      contractName: '',
       contractFilename: '',
       compilerVersion: 'v0.8.13+commit.abaa5c0e',
       evmVersion: 'london',
@@ -25,6 +26,7 @@ class App extends React.Component {
     this.contractUpdated = this.contractUpdated.bind(this)
     this.contractAddressUpdated = this.contractAddressUpdated.bind(this)
     this.contractFilenameUpdated = this.contractFilenameUpdated.bind(this)
+    this.contractNameUpdated = this.contractNameUpdated.bind(this)
   }
 
   verify(codestring, address) {
@@ -33,6 +35,7 @@ class App extends React.Component {
         'contract_code' : codestring,
         'contract_address': address,
         'compiler_version': this.state.compilerVersion,
+        'contract_name': this.state.contractName,
         'contract_filename': this.state.contractFilename,
         'evm_version': this.state.evmVersion,
         'optimized': this.state.optimized,
@@ -77,6 +80,12 @@ class App extends React.Component {
     console.log(this.state.evmVersion);
     console.log("----END----")
     this.verify(this.state.solSource, this.state.contractAddress)
+  }
+
+  contractNameUpdated(name) {
+    this.setState({
+      contractName: name
+    })
   }
 
   contractFilenameUpdated(filename) {
@@ -125,6 +134,17 @@ class App extends React.Component {
           placeholder="Type tolar contract address"
           multiline={false}
           onChangeText={this.contractAddressUpdated}
+        />
+        <TextInput
+          style={{
+            width: '70%',
+            margin: 5,
+            padding: 5,
+            backgroundColor: "white"
+          }}
+          placeholder="Type contract name"
+          multiline={false}
+          onChangeText={this.contractNameUpdated}
         />
         <TextInput
           style={{
